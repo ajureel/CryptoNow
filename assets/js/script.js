@@ -7,12 +7,15 @@ var apiTestEl = document.getElementById('apiTest');
 
 // Global Constants
 const blockchainKy = ""; //key may take 2-3 days.  There are some apis that do not require authentication
-const coincapKy = "";
+const coincapKy = ""; //as of 1/12 8:48 est coincap documentation site was down.
 
 
 // ************ API Connections **********
+// Blockchain - Documentation - https://api.blockchain.com/v3/#/unauthenticated/
 // Base URL:    https://api.blockchain.com/v3/exchange
 // Ticker URL:  https://api.blockchain.com/v3/exchange/tickers
+
+// CoinCap -  Documentation - https://docs.coincap.io/
 
 var getTicker = function() {
     //this blockchain ticker does not require authentication/key
