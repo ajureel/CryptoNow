@@ -5,59 +5,109 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+    <!-- http://tachyons.io/components/tables/striped-dark/index.html -->
     <link rel="stylesheet" href="assets/css/style.css">
     <title>CryptoNow!</title>
 </head>
 <body>
+    <div class="dt dt--fixed">
+        <div class="w-25 white bg-pink">
+              Logo/name
+        </div>
+        <div class="w-75 white bg-purple">
+              Banner
+       </div>
+        
+     
+      <div class="dt dt--fixed">
+        <div class="dtc tc pv4 white bg-blue">
+          1 2
+          <div id="search" >
+            Search goes here
+        </div>
+        </div>
+        <div class="dtc tc pv4 white bg-black-70">
+            Live Feed Goes Here
+        </div>
+        <div class="dtc tc pv4 white bg-black">
+          Media Goes Here
+        </div>
+        <!-- <div class="dtc tc pv4 white bg-black-70">
+          4 2
+        </div>
+        <div class="dtc tc pv4 white bg-black">
+          5 2
+        </div>
+        <div class="dtc tc pv4 white bg-black-70">
+          6 2
+        </div>
+        <div class="dtc tc pv4 white bg-black">
+          7 2
+        </div>
+        <div class="dtc tc pv4 white bg-black-70">
+          8 2
+        </div>
+        <div class="dtc tc pv4 white bg-black">
+          9 2
+        </div> -->
+      </div>
+      <div class="dt dt--fixed">
+        <div class="dtc tc pv4 bg-black-10">
+          1 lower
+        </div>
+        <div class="dtc tc pv4 bg-black-05">
+          2 lower
+        </div>
+        <!-- <div class="dtc tc pv4 bg-black-10">
+          3 lower
+        </div>
+        <div class="dtc tc pv4 bg-black-10">
+          4 lower
+        </div>
+        <div class="dtc tc pv4 bg-black-05">
+          5lower
+        </div>
+        <div class="dtc tc pv4 bg-black-10">
+          6 lower
+        </div> -->
+      </div>
+    <div id="body" class="flex flex-wrap">
+        <!-- left page section -->
+        <div  class="outline w-25 pa3 mr2">
+            
+            <div id=history class="outline w-100 pa3 mr2">
+                Coin history  goes here
+            </div>        
+        </div>
+
+        <!-- Right page section -->
+        <div class="outline w-25 pa3 mr2">
+            <div id=banner class="outline w-25 pa3 mr2">
+                Banner goes here
+            </div>
+            <div>
+                <div id=currentInfo class="outline w-25 pa3 mr2">
+                    Select coin/current info goes here
+                </div>
+                <div id=media class="outline w-25 pa3 mr2">
+                    Media goes here
+                </div>
+                
+            </div>
+            <div id=market class="outline w-25 pa3 mr2">
+                Market goes here
+            </div>
+            
+        </div>
+    </div>
+    
     <h1>CryptoNow Coming Soon!</h1>
     <div id="apiTest"></div>
     <div id="coincapTest"></div>
-    <div class="pa4">
-        <div class="overflow-auto">
-          <table class="f6 w-100 mw8 center" cellspacing="0">
-            <thead>
-              <tr class="stripe-dark">
-                <th class="fw6 tl pa3 bg-white">Name</th>
-                <th class="fw6 tl pa3 bg-white">Username</th>
-                <th class="fw6 tl pa3 bg-white">Email</th>
-                <th class="fw6 tl pa3 bg-white">ID</th>
-              </tr>
-            </thead>
-            <tbody class="lh-copy">
-              <tr class="stripe-dark">
-                <td class="pa3">Hassan Johnson</td>
-                <td class="pa3">@hassan</td>
-                <td class="pa3">hassan@companywithalongdomain.co</td>
-                <td class="pa3">14419232532474</td>
-              </tr>
-              <tr class="stripe-dark">
-                <td class="pa3">Taral Hicks</td>
-                <td class="pa3">@hicks</td>
-                <td class="pa3">taral@companywithalongdomain.co</td>
-                <td class="pa3">72326219423551</td>
-              </tr>
-              <tr class="stripe-dark">
-                <td class="pa3">Tyrin Turner</td>
-                <td class="pa3">@tt</td>
-                <td class="pa3">ty@companywithalongdomain.co</td>
-                <td class="pa3">92325170324444</td>
-              </tr>
-              <tr class="stripe-dark">
-                <td class="pa3">Oliver Grant</td>
-                <td class="pa3">@oli</td>
-                <td class="pa3">oliverg@companywithalongdomain.co</td>
-                <td class="pa3">71165170352909</td>
-              </tr>
-              <tr class="stripe-dark">
-                <td class="pa3">Dean Blanc</td>
-                <td class="pa3">@deanblanc</td>
-                <td class="pa3">dean@companywithalongdomain.co</td>
-                <td class="pa3">71865178111909</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    
+    <footer id=footer>
+        Footer goes here
+    </footer>
       
 </body>
 <script src="assets/js/script.js"></script>
