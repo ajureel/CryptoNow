@@ -84,8 +84,26 @@ var getBlockChainTicker = function() {
        });
   }
 
+  var getOpenSeaAssets = function() {
+       
+    requestUrl = 'https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20';
+    //requestUrl = 'https://api.opensea.io/api/v1/assets?&order_direction=desc&offset=0&limit=20';
+    fetch(requestUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        //Using console.log to examine the data
+        console.log("OpenSea");
+        console.log(data);
+
+       });
+  }
+  
+
   getBlockChainTicker();
   getCoinCapTicker();
+  getOpenSeaAssets();
 
 
   
