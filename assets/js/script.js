@@ -6,10 +6,13 @@ var coinSearchBtnEl = document.getElementById('coinSearchBtn');
 var nftSearchBtnEl = document.getElementById('nftSearchBtn');
 var mySearchBxEl = document.getElementById('mySearchBx');
 var searchResultsEl = document.getElementById('searchResults');
+var searchHistoryDivEl = document.getElementById('searchHistoryDiv');
 
 // Global Vars
 var obfuscateMe = "b6581e5631f74d709c61e26b094e5e0a";
 var obfuscatePart = "X-API-KEY";
+var searchBtnsAry = new Array();
+var searchHistoryAry = new Array();
 
 // Global Constants
 const blockchainKy = ""; //key may take 2-3 days.  There are some apis that do not require authentication
@@ -20,6 +23,67 @@ const coincapKy = ""; //as of 1/12 8:48 est coincap documentation site was down.
   var myConsoleLog = function (objName, obj) {
     console.log(objName + ": " + obj);
   }
+
+  // create history and buttons
+var createHistory = function (searchText, searchType, resultObject){
+  console.log("create button and history");
+
+  // check to see if the city is already in our history
+  if (searchBtnsAry){
+      for(i=0; i<searchBtnsAry.length; i++){
+          if (searchBtnsAry[i].id==searchText){
+              console.log("test2");
+              return; //do not add duplicate history
+          }
+      }
+  }
+
+  //Add the button
+  addHistoryBtn(searchText, searchType, resultObject);
+
+  //add to history array used to check for duplicates and save
+  searchHistoryAry.push({historyText:searchText, historyType:searchType, historyResult:resultObject});
+
+  //save history to local storage
+  //saveHistory();
+}
+
+var addHistoryBtn = function (searchText, searchType, resultObject){
+  console.log("addHistoryBtn");
+  myConsoleLog("searchText", searchText);
+  myConsoleLog("searchType", searchType);
+  myConsoleLog("resultObject", resultObject);
+
+  var historyBtn = document.createElement('button');
+  historyBtn.setAttribute("class", "btn btn-block btn-primary");
+  historyBtn.setAttribute("type", "button");
+  historyBtn.setAttribute("id", searchText);
+  // what do we want to store from the data object?
+  historyBtn.setAttribute("data-searchType", searchType);
+  historyBtn.innerText = searchText;
+
+  // myConsoleLog("historyBtn",historyBtn.outerHTML);
+  // myConsoleLog("searchHistoryDivEl",searchHistoryDivEl.outerHTML);
+  searchHistoryDivEl.append(historyBtn);
+  searchBtnsAry.push(historyBtn);
+
+}
+
+var reloadHistoryBtn = function(myEvent){
+  myConsoleLog("reloadHistoryBtn","start");
+  var el = myEvent.target
+    
+  var reloadSearchText = el.id;
+  var reloadSearchType = el.getAttribute('data-searchType');
+  // lon = el.getAttribute('data-lon');
+  // console.log(city + " " + lat + " " +lon);
+  // getWeatherApi();
+
+  if (reloadSearchType == 'getBlockChainItem') {
+    getBlockChainItem(reloadSearchText, "reloadHistoryBtn");
+  }
+}
+
 
 // ************ API Connections **********
 // Blockchain - Documentation - https://api.blockchain.com/v3/#/unauthenticated/
@@ -170,11 +234,20 @@ var getOpenSeaEvents = function(){
     
 };  
   
-var getBlockChainItem = function(){
+var getBlockChainItem = function(myBtnText, caller){
   myConsoleLog("getBlockChainItem", "Start");
+  myConsoleLog("myBtnText", myBtnText);
+  myConsoleLog("caller", caller);
 
   // Search for a coin
-  var myBlockchainSymbol = mySearchBxEl.value.toUpperCase() + "-USD";
+  var myBlockchainSymbol = '';
+  if (caller !== undefined)
+  {
+     myBlockchainSymbol = myBtnText;
+  } else 
+  {
+    myBlockchainSymbol = mySearchBxEl.value.toUpperCase() + "-USD";
+  };
   myConsoleLog("myBlockchainSymbol", myBlockchainSymbol);
   // https://api.blockchain.com/v3/exchange/tickers/BTC-USD
       // last_trade_price: 43498.23
@@ -234,13 +307,13 @@ var getBlockChainItem = function(){
           // ie future change to display 5, when adding a new one, remove the oldest
           searchResultsEl.innerHTML = "";
           searchResultsEl.append(myArticleEl);
+
+          // add to history
+          createHistory(myBlockchainSymbol, "getBlockChainItem", "");
   
          });
   
 
-  //display results
-
-  // add to history
 
 };
 
@@ -251,6 +324,9 @@ var getNFTItem = function(){
 
 coinSearchBtnEl.addEventListener('click', getBlockChainItem);
 nftSearchBtnEl.addEventListener('click', getNFTItem);
+searchHistoryDivEl.addEventListener('click', function (myEvent) {
+  reloadHistoryBtn(myEvent);
+});
 
 // searchResultsEl.addEventListener('click', function (myEvent) {
 //     reloadCity(myEvent);
