@@ -1,9 +1,11 @@
 // Elements
 var apiTestEl = document.getElementById('apiTest');
 var coincapTestEl = document.getElementById('coincapTest');
+var OpenSeaEventsEl = document.getElementById('OpenSeaEvents');
 
 // Global Vars
-
+var obfuscateMe = "b6581e5631f74d709c61e26b094e5e0a";
+var obfuscatePart = "X-API-KEY";
 
 // Global Constants
 const blockchainKy = ""; //key may take 2-3 days.  There are some apis that do not require authentication
@@ -100,7 +102,41 @@ var getBlockChainTicker = function() {
        });
   }
   
+var getOpenSeaEvents = function(){
+    var options = {
+      method: 'GET',
+      headers: {Accept: 'application/json', 'X-API-KEY': obfuscateMe}
+    };
+    
+    myConsoleLog("options", JSON.stringify(options));
 
+    fetch('https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20', options)
+      .then(function (response){
+        return response.json();
+      })
+      .then(function(data){
+        console.log('here');
+        console.log(data);
+
+        var currentHeaderEl = document.createElement('h');
+        var currentNameEl = document.createElement('p');
+        var currentEventTypeEl = document.createElement('p');
+        var currentDescriptionEl = document.createElement('p');
+        var currentImageEl = document.createElement('img');
+                
+        currentHeaderEl.innerText = "OpenSea Events Test";
+        currentNameEl.innerText = "Name: " + data.asset_events[0].asset.name;
+        currentEventTypeEl.innerText = "Event: " + data.asset_events[0].event_type;
+        currentImageEl.setAttribute("src", data.asset_events[0].asset.image_preview_url);
+        currentImageEl.setAttribute("alt", "NFT Preview");
+        currentDescriptionEl.innerText = data.asset_events[0].asset.description;
+
+        OpenSeaEventsEl.append(currentHeaderEl, currentNameEl, currentEventTypeEl, currentImageEl, currentDescriptionEl);
+      })
+      .catch(err => console.error(err));
+};  
+  
+  getOpenSeaEvents();
   getBlockChainTicker();
   getCoinCapTicker();
   getOpenSeaAssets();
