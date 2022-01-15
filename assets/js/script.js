@@ -202,6 +202,7 @@ var getOpenSeaEvents = function () {
         var myImgEl = document.createElement('img');
         var myFieldsDivEl = document.createElement('div');
         var myNFTNameEl = document.createElement('a');
+        var myAddBtnEl = document.createElement('button');
 
         var currentEventTypeEl = document.createElement('p');
         var currentDescriptionEl = document.createElement('p');
@@ -213,6 +214,17 @@ var getOpenSeaEvents = function () {
         myImgEl.setAttribute('class', 'db');
         myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
         myNFTNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
+
+        if (data.asset_events[i].event_type !== 'created'){
+        var myURL = 'https://api.opensea.io/api/v1/asset/'+data.asset_events[i].asset.asset_contract.address +'/'+data.asset_events[i].asset.token_id +'/';
+        var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","'+ myURL + '")';
+        myAddBtnEl.setAttribute('onclick', myfunction);
+        myAddBtnEl.setAttribute('href', "javascript:void(0);");
+        myAddBtnEl.innerText = "Add to History";
+      }else myAddBtnEl = document.createElement('a');
+        //createHistory(myToken, "getNFTItem", myURL);
+        //<a onclick="jsfunction()" href="javascript:void(0);"></a>
+
         //Do we need to set a class for event type, description, price?
 
         // populate the data from the API results
@@ -227,7 +239,7 @@ var getOpenSeaEvents = function () {
         };
 
         //Build the card
-        myFieldsDivEl.append(myNFTNameEl, currentEventTypeEl, currentDescriptionEl, currentUSDPriceEl);
+        myFieldsDivEl.append(myNFTNameEl, myAddBtnEl, currentEventTypeEl, currentDescriptionEl, currentUSDPriceEl);
         myArticleEl.append(myImgEl, myFieldsDivEl);
         // mySectionEl.append(myArticleEl);
 
@@ -260,62 +272,67 @@ var getBlockChainItem = function (myBtnText, caller) {
   requestUrl = 'https://api.blockchain.com/v3/exchange/tickers/' + myBlockchainSymbol;
 
   fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //Using console.log to examine the data
-      console.log(data);
-
-      // create Tachyons profile card for each NFT 
-      // SEE: Example http://tachyons.io/components/cards/suggested-profile/index.html
-
-      // Create the elements of the card
-      var myArticleEl = document.createElement('article');
-      var myImgEl = document.createElement('img');
-      var myFieldsDivEl = document.createElement('div');
-      var myCurNameEl = document.createElement('a');
-      var last_tradeEl = document.createElement('p');
-      var price_24hEl = document.createElement('p');
-      var volume_24hEl = document.createElement('p');
-
-      // last_trade_price: 43498.23
-      // price_24h: 42917.75
-      // symbol: "BTC-USD"
-      // volume_24h: 186.53045485
-
-      // Set the element attributes
-      myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
-      myImgEl.setAttribute('class', 'db');
-      myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
-      myCurNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
-
-      // populate the data from the API results
-      myCurNameEl.innerText = "Symbol: " + data.symbol;
-      last_tradeEl.innerText = "Last Trade: $" + data.last_trade_price;
-      price_24hEl.innerText = "Price: $" + data.price_24h;
-      volume_24hEl.innerText = "Volume: " + data.volume_24h;
-      if (data.last_trade_price > data.price_24h) { //trading is higher than current price so get on the wagon and buy!
-        myImgEl.setAttribute("src", "assets/media/Up.jpg");
+    .then(function(data) {
+      if (data.ok) {
+        data.json()
+        .then(function(data) {            
+           //Using console.log to examine the data
+            console.log(data);
+      
+            // create Tachyons profile card for each NFT 
+            // SEE: Example http://tachyons.io/components/cards/suggested-profile/index.html
+      
+            // Create the elements of the card
+            var myArticleEl = document.createElement('article');
+            var myImgEl = document.createElement('img');
+            var myFieldsDivEl = document.createElement('div');
+            var myCurNameEl = document.createElement('a');
+            var last_tradeEl = document.createElement('p');
+            var price_24hEl = document.createElement('p');
+            var volume_24hEl = document.createElement('p');
+      
+            // last_trade_price: 43498.23
+            // price_24h: 42917.75
+            // symbol: "BTC-USD"
+            // volume_24h: 186.53045485
+      
+            // Set the element attributes
+            myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
+            myImgEl.setAttribute('class', 'db');
+            myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
+            myCurNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
+      
+            // populate the data from the API results
+            myCurNameEl.innerText = "Symbol: " + data.symbol;
+            last_tradeEl.innerText = "Last Trade: $" + data.last_trade_price;
+            price_24hEl.innerText = "Price: $" + data.price_24h;
+            volume_24hEl.innerText = "Volume: " + data.volume_24h;
+            if (data.last_trade_price > data.price_24h) { //trading is higher than current price so get on the wagon and buy!
+              myImgEl.setAttribute("src", "assets/media/Up.jpg");
+            } else {
+              myImgEl.setAttribute("src", "assets/media/Down.jpg");
+            };
+      
+            myImgEl.setAttribute("alt", "Buy or Sell Image");
+      
+            //Build the card
+            myFieldsDivEl.append(myCurNameEl, price_24hEl, last_tradeEl, volume_24hEl);
+            myArticleEl.append(myImgEl, myFieldsDivEl);
+      
+            // currently this only displays one at a time.  It would be cool to put these in an array and build up to displaying multiple. 
+            // ie future change to display 5, when adding a new one, remove the oldest
+            searchResultsEl.innerHTML = "";
+            searchResultsEl.append(myArticleEl);
+      
+            // add to history
+            createHistory(myBlockchainSymbol, "getBlockChainItem", "");
+      
+          });
       } else {
-        myImgEl.setAttribute("src", "assets/media/Down.jpg");
+        alert("Currency not found!");
       };
+      });
 
-      myImgEl.setAttribute("alt", "Buy or Sell Image");
-
-      //Build the card
-      myFieldsDivEl.append(myCurNameEl, price_24hEl, last_tradeEl, volume_24hEl);
-      myArticleEl.append(myImgEl, myFieldsDivEl);
-
-      // currently this only displays one at a time.  It would be cool to put these in an array and build up to displaying multiple. 
-      // ie future change to display 5, when adding a new one, remove the oldest
-      searchResultsEl.innerHTML = "";
-      searchResultsEl.append(myArticleEl);
-
-      // add to history
-      createHistory(myBlockchainSymbol, "getBlockChainItem", "");
-
-    });
 };
 
 var getNFTItem = function (myBtnText, caller, urlText='') {
