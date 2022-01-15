@@ -120,22 +120,50 @@ var getOpenSeaEvents = function(){
         console.log('here');
         console.log(data);
 
-        var currentHeaderEl = document.createElement('h');
-        var currentNameEl = document.createElement('p');
-        var currentEventTypeEl = document.createElement('p');
-        var currentDescriptionEl = document.createElement('p');
-        var currentUSDPriceEl = document.createElement('p');
-        var currentImageEl = document.createElement('img');
-                
-        currentHeaderEl.innerText = "OpenSea Events Test";
-        currentNameEl.innerText = "Name: " + data.asset_events[0].asset.name;
-        currentEventTypeEl.innerText = "Event: " + data.asset_events[0].event_type;
-        currentImageEl.setAttribute("src", data.asset_events[0].asset.image_preview_url);
-        currentImageEl.setAttribute("alt", "NFT Preview");
-        currentDescriptionEl.innerText = data.asset_events[0].asset.description;
-        currentUSDPriceEl.innerText = "$" + data.asset_events[0].payment_token.usd_price;
+        for (i=0; i< data.asset_events.length; i++){
+          
+          // create Tachyons profile card for each NFT 
+          // SEE: Example http://tachyons.io/components/cards/suggested-profile/index.html
 
-        OpenSeaEventsEl.append(currentHeaderEl, currentNameEl, currentEventTypeEl, currentImageEl, currentDescriptionEl, currentUSDPriceEl);
+          // Create the elements of the card
+          var mySectionEl = document.createElement('section');
+          var myArticleEl = document.createElement('article');
+          var myImgEl = document.createElement('img');
+          var myFieldsDivEl = document.createElement('div');
+          var myNFTNameEl = document.createElement('a');
+
+          var currentEventTypeEl = document.createElement('p');
+          var currentDescriptionEl = document.createElement('p');
+          var currentUSDPriceEl = document.createElement('p');
+          
+          // Set the element attributes
+          mySectionEl.setAttribute('class', 'tc pa3 pa5-ns');
+          myArticleEl.setAttribute('class','w-25 hide-child relative ba b--black-20 mw5 center');
+          myImgEl.setAttribute('class', 'db');
+          myFieldsDivEl.setAttribute('class','pa2 bt b--black-20');
+          myNFTNameEl.setAttribute('class','f6 db link dark-blue hover-blue');
+          //Do we need to set a class for event type, description, price?
+             
+          // populate the data from the API results
+          if (data.asset_events[i].asset.name) {myNFTNameEl.innerText = "Name: " + data.asset_events[i].asset.name;};
+          currentEventTypeEl.innerText = "Event: " + data.asset_events[i].event_type;
+          myImgEl.setAttribute("src", data.asset_events[i].asset.image_preview_url);
+          myImgEl.setAttribute("alt", "NFT Preview");
+          currentDescriptionEl.innerText = data.asset_events[i].asset.description;
+          
+          if (data.asset_events[i].payment_token){
+            currentUSDPriceEl.innerText = "$" + data.asset_events[i].payment_token.usd_price;
+          };
+
+          //Build the card
+          myFieldsDivEl.append( myNFTNameEl, currentEventTypeEl, currentDescriptionEl, currentUSDPriceEl);
+          myArticleEl.append(myImgEl, myFieldsDivEl);
+          // mySectionEl.append(myArticleEl);
+
+          // Add the card
+          OpenSeaEventsEl.append(myArticleEl);
+      }
+
       })
     
 };  
