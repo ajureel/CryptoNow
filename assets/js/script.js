@@ -2,6 +2,8 @@
 var apiTestEl = document.getElementById('apiTest');
 var coincapTestEl = document.getElementById('coincapTest');
 var OpenSeaEventsEl = document.getElementById('OpenSeaEvents');
+var coinSearchBtnEl = document.getElementById('coinSearchBtn');
+var nftSearchBtnEl = document.getElementById('nftSearchBtn');
 
 // Global Vars
 var obfuscateMe = "b6581e5631f74d709c61e26b094e5e0a";
@@ -122,6 +124,7 @@ var getOpenSeaEvents = function(){
         var currentNameEl = document.createElement('p');
         var currentEventTypeEl = document.createElement('p');
         var currentDescriptionEl = document.createElement('p');
+        var currentUSDPriceEl = document.createElement('p');
         var currentImageEl = document.createElement('img');
                 
         currentHeaderEl.innerText = "OpenSea Events Test";
@@ -130,16 +133,34 @@ var getOpenSeaEvents = function(){
         currentImageEl.setAttribute("src", data.asset_events[0].asset.image_preview_url);
         currentImageEl.setAttribute("alt", "NFT Preview");
         currentDescriptionEl.innerText = data.asset_events[0].asset.description;
+        currentUSDPriceEl.innerText = "$" + data.asset_events[0].payment_token.usd_price;
 
-        OpenSeaEventsEl.append(currentHeaderEl, currentNameEl, currentEventTypeEl, currentImageEl, currentDescriptionEl);
+        OpenSeaEventsEl.append(currentHeaderEl, currentNameEl, currentEventTypeEl, currentImageEl, currentDescriptionEl, currentUSDPriceEl);
       })
-      .catch(err => console.error(err));
+    
 };  
   
+var getBlockChainItem = function(){
+  myConsoleLog("getBlockChainItem", "Start");
+};
+
+var getNFTItem = function(){
+  myConsoleLog("getNFTItem", "Start");
+};
+
+
+coinSearchBtnEl.addEventListener('click', getBlockChainItem);
+nftSearchBtnEl.addEventListener('click', getNFTItem);
+
+// searchResultsEl.addEventListener('click', function (myEvent) {
+//     reloadCity(myEvent);
+// });
+
+// TESTS - These need to be commented out once we finalize the UI and data placement
   getOpenSeaEvents();
   getBlockChainTicker();
   getCoinCapTicker();
-  getOpenSeaAssets();
+ // getOpenSeaAssets();
 
 
   
