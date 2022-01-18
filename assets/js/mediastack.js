@@ -8,7 +8,7 @@ var obfuscateMyStack = "3fa5e051521ce9ae2bbc50c936bb99d9";
 
 var getNews = function (myKeyword) {
     var MediaStackURL = "http://api.mediastack.com/v1/news?access_key=";
-    MediaStackURL = MediaStackURL + obfuscateMyStack + "&countries=us&keyworkds=" + myKeyword;
+    MediaStackURL = MediaStackURL + obfuscateMyStack + "&countries=us&sources=cnn,bloomberg&keywords=crypto&languages=en&limit=10" + myKeyword;
     console.log(MediaStackURL);
   
     fetch(MediaStackURL)
