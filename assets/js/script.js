@@ -55,7 +55,7 @@ var addHistoryBtn = function (searchText, searchType, myURL) {
   myConsoleLog("resultObject", myURL);
 
   var historyBtn = document.createElement('button');
-  historyBtn.setAttribute("class", "btn btn-block btn-primary ma2");
+  historyBtn.setAttribute("class", "f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green");
   historyBtn.setAttribute("type", "button");
   historyBtn.setAttribute("id", searchText);
   // what do we want to store from the data object?
@@ -219,6 +219,9 @@ var getOpenSeaEvents = function () {
         var myURL = 'https://api.opensea.io/api/v1/asset/'+data.asset_events[i].asset.asset_contract.address +'/'+data.asset_events[i].asset.token_id +'/';
         var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","'+ myURL + '")';
         myAddBtnEl.setAttribute('onclick', myfunction);
+        myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
+//
+//
         myAddBtnEl.setAttribute('href', "javascript:void(0);");
         myAddBtnEl.innerText = "Add to History";
       }else myAddBtnEl = document.createElement('a');
