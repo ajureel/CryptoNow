@@ -55,7 +55,7 @@ var addHistoryBtn = function (searchText, searchType, myURL) {
   myConsoleLog("resultObject", myURL);
 
   var historyBtn = document.createElement('button');
-  historyBtn.setAttribute("class", "btn btn-block btn-primary ma2");
+  historyBtn.setAttribute("class", "f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green");
   historyBtn.setAttribute("type", "button");
   historyBtn.setAttribute("id", searchText);
   // what do we want to store from the data object?
@@ -111,19 +111,19 @@ var getBlockChainTicker = function () {
       //Using console.log to examine the data
       console.log(data);
 
-      var currentHeaderEl = document.createElement('h');
+     
       var currentSymbolEl = document.createElement('p');
       var currentLastTradePriceEl = document.createElement('p');
       var currentPrice_24hEl = document.createElement('p');
       var currentVolumeEl = document.createElement('p');
 
-      currentHeaderEl.innerText = "Blockchain API Test";
+      
       currentSymbolEl.innerText = "Symbol: " + data[0].symbol;
       currentLastTradePriceEl.innerText = "Last Price: " + data[0].last_trade_price;
-      currentPrice_24hEl.innerText = "Humidity: " + data[0].price_24h;
-      currentVolumeEl.innerText = "UV Index: " + data[0].volume_24h;
+      currentPrice_24hEl.innerText = "Price 24hrs Ago: " + data[0].price_24h;
+      currentVolumeEl.innerText = "Current Volume: " + data[0].volume_24h;
 
-      apiTestEl.append(currentHeaderEl, currentSymbolEl, currentLastTradePriceEl, currentLastTradePriceEl, currentPrice_24hEl, currentVolumeEl);
+      apiTestEl.append(currentSymbolEl, currentLastTradePriceEl, currentLastTradePriceEl, currentPrice_24hEl, currentVolumeEl);
 
 
     });
@@ -161,8 +161,8 @@ var getCoinCapTicker = function () {
 
 var getOpenSeaAssets = function () {
 
-  requestUrl = 'https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=10';
-  //requestUrl = 'https://api.opensea.io/api/v1/assets?&order_direction=desc&offset=0&limit=20';
+  requestUrl = 'https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20';
+
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
@@ -183,7 +183,7 @@ var getOpenSeaEvents = function () {
 
   myConsoleLog("options", JSON.stringify(options));
 
-  fetch('https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=10', options)
+  fetch('https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20', options)
     .then(function (response) {
       return response.json();
     })
@@ -219,6 +219,7 @@ var getOpenSeaEvents = function () {
         var myURL = 'https://api.opensea.io/api/v1/asset/'+data.asset_events[i].asset.asset_contract.address +'/'+data.asset_events[i].asset.token_id +'/';
         var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","'+ myURL + '")';
         myAddBtnEl.setAttribute('onclick', myfunction);
+        myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
         myAddBtnEl.setAttribute('href', "javascript:void(0);");
         myAddBtnEl.innerText = "Add to History";
       }else myAddBtnEl = document.createElement('a');

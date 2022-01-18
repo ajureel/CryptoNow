@@ -1,98 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"
+    />
     <!-- http://tachyons.io/components/tables/striped-dark/index.html -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>CryptoNow!</title>
-    <link rel="icon" href="assets/media/CrownClipArt.png">
-</head>
-<body>
-  <header class="bg-black-90 fixed w-100 ph1 pv1 pv3-ns ph3-m ph4-l">
+    <link rel="icon" href="assets/media/CrownClipArt.png" />
+  </head>
+  <body class="bodoni">
+    <header class="bg-black-90 fixed w-100 ph1 pv1 pv3-ns ph3-m ph4-l">
+      <img
+        class="dim white dib m0"
+        src="./assets/images/CryptoNowLogo.png"
+        height="100px"
+      />
 
-      <img class="dim white dib m0" src="./assets/images/CryptoNowLogo.png" height="100px" >
-     
-     <div>
-       <link href="http://api.mediastack.com/v1/news" />
-
-       
-     </div>
-  </header>
-  <section data-name="component-info" class="pa3 pa5-ns bt b--black-10 black-70 bg-white">
-    
-</section>
-      <div class="flex flex-wrap">
-        <div class="flex flex-column items-start w-50 white bg-blue" id="searchHistoryDiv">
-          <div class="flex-column ma2" id="search" >
-              <label class="ma2" for="mySearchBx">Search:</label><br>
-              <input type="test" class="w-50 ma2" id="mySearchBx"><br>
-
-          <button class="btn btn-block btn-primary ma2" type="button" id="coinSearchBtn" value="Input" >Search Crypto</button><br>
-          <button class="btn btn-block btn-primary ma2" type="button" id="nftSearchBtn" value="Input" >Search NFT</button><br>
-        </div>
-        <h2>History: </h2>
+      <div>
+        <link href="http://api.mediastack.com/v1/news" />
       </div>
-        <div class="flex w-49 white bg-black-70" id="newsFeed">
-            <link href="http://api.mediastack.com/v1/news?access_key=" />
-            <h2>News</h2>
-        </div>
-        <div class="flex w-100 cf white bg-black" id="OpenSeaEvents">
-          Media Goes Here
-        </div>
-        <!-- <div class="dtc tc pv4 white bg-black-70">
-          4 2
-        </div>
-        <div class="dtc tc pv4 white bg-black">
-          5 2
-        </div>
-        <div class="dtc tc pv4 white bg-black-70">
-          6 2
-        </div>
-        <div class="dtc tc pv4 white bg-black">
-          7 2
-        </div>
-        <div class="dtc tc pv4 white bg-black-70">
-          8 2
-        </div>
-        <div class="dtc tc pv4 white bg-black">
-          9 2
-        </div> -->
-      </div>
+    </header>
+    <section
+      data-name="component-info"
+      class="pa3 pa5-ns bt b--black-10 black-70 bg-white"
+    ></section>
+    <div class="flex flex-wrap">
+      <div class="flex items-start w-50 pv4 white bg-black">
+        <div class="flex flex-column pv3" id="search">
+          <h2 class="ma2">Search:</h2>
+          <label class="ma2" for="mySearchBx"></label>
+          <input type="test" class="w-60 ma2" id="mySearchBx" /><br />
 
-        <div class="dtc tc pv4 bg-black-05" id="searchResults">
-          2 lower
-          Charts?
+          <button
+            class="f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green"
+            type="button"
+            id="coinSearchBtn"
+            value="Input"
+          >
+            Search Crypto</button
+          ><br />
+          <button
+            class="f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green"
+            type="button"
+            id="nftSearchBtn"
+            value="Input"
+          >
+            Search NFT</button
+          ><br />
         </div>
-        <!-- <div class="dtc tc pv4 bg-black-10">
-          3 lower
+
+        <div
+          class="flex flex-column flex-wrap items-start w-25 pv3"
+          id="searchHistoryDiv"
+        >
+          <h2 class="ma2">History:</h2>
         </div>
-        <div class="dtc tc pv4 bg-black-10">
-          4 lower
+        <div class="w-50 pv3 bg-black-05" id="searchResults">
+          <h2 class="w-100 pa0 ma0">Blockchain Info:</h2>
+          <div class="" id="apiTest"></div>
         </div>
-        <div class="dtc tc pv4 bg-black-05">
-          5lower
-        </div>
-        <div class="dtc tc pv4 bg-black-10">
-          6 lower
-        </div> -->
       </div>
 
-    <h1>CryptoNow Coming Soon!</h1>
-    <h2>Blockchain Test</h2>
-    <div id="apiTest"></div>
-    <h2>CoinCap Test</h2>
-    <div id="coincapTest"></div>
-    <h2>OpenSea Test</h2>
-    <!-- <div id="OpenSeaEvents" class="flex flex-wrap"></div> -->
+      <div class="flex w-50 white bg-black-70" id="newsFeed">
+        <link href="http://api.mediastack.com/v1/news?access_key=" />
+        <h2 class="w-100">News</h2>
+      </div>
+
+      <div
+        class="flex flex-wrap w-100 cf white bg-black"
+        id="OpenSeaEvents"
+      ></div>
     </div>
-    <footer id=footer>
-        Footer goes here
-        Thanks to: Blockchain, CoinCap, OpenSea...
-    </footer>
-      
-</body>
-<script src="assets/js/script.js"></script>
+    <footer id="footer">Thanks to: Blockchain, CoinCap, OpenSea...</footer>
+  </body>
+  <script src="assets/js/script.js"></script>
 </html>
