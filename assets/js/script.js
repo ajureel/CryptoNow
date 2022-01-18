@@ -220,8 +220,6 @@ var getOpenSeaEvents = function () {
         var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","'+ myURL + '")';
         myAddBtnEl.setAttribute('onclick', myfunction);
         myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
-//
-//
         myAddBtnEl.setAttribute('href', "javascript:void(0);");
         myAddBtnEl.innerText = "Add to History";
       }else myAddBtnEl = document.createElement('a');
