@@ -308,9 +308,9 @@ var getBlockChainItem = function (myBtnText, caller) {
             price_24hEl.innerText = "Price: $" + data.price_24h;
             volume_24hEl.innerText = "Volume: " + data.volume_24h;
             if (data.last_trade_price > data.price_24h) { //trading is higher than current price so get on the wagon and buy!
-              myImgEl.setAttribute("src", "assets/media/Up.jpg");
+              myImgEl.setAttribute("src", "./assets/images/Up.jpg");
             } else {
-              myImgEl.setAttribute("src", "assets/media/Down.jpg");
+              myImgEl.setAttribute("src", "./assets/images/Down.jpg");
             };
       
             myImgEl.setAttribute("alt", "Buy or Sell Image");
