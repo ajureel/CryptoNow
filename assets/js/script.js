@@ -55,7 +55,7 @@ var addHistoryBtn = function (searchText, searchType, myURL) {
   myConsoleLog("resultObject", myURL);
 
   var historyBtn = document.createElement('button');
-  historyBtn.setAttribute("class", "btn btn-block btn-primary");
+  historyBtn.setAttribute("class", "btn btn-block btn-primary ma2");
   historyBtn.setAttribute("type", "button");
   historyBtn.setAttribute("id", searchText);
   // what do we want to store from the data object?
@@ -161,7 +161,7 @@ var getCoinCapTicker = function () {
 
 var getOpenSeaAssets = function () {
 
-  requestUrl = 'https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20';
+  requestUrl = 'https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=10';
   //requestUrl = 'https://api.opensea.io/api/v1/assets?&order_direction=desc&offset=0&limit=20';
   fetch(requestUrl)
     .then(function (response) {
@@ -183,7 +183,7 @@ var getOpenSeaEvents = function () {
 
   myConsoleLog("options", JSON.stringify(options));
 
-  fetch('https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20', options)
+  fetch('https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=10', options)
     .then(function (response) {
       return response.json();
     })
@@ -308,9 +308,9 @@ var getBlockChainItem = function (myBtnText, caller) {
             price_24hEl.innerText = "Price: $" + data.price_24h;
             volume_24hEl.innerText = "Volume: " + data.volume_24h;
             if (data.last_trade_price > data.price_24h) { //trading is higher than current price so get on the wagon and buy!
-              myImgEl.setAttribute("src", "assets/media/Up.jpg");
+              myImgEl.setAttribute("src", "./assets/images/Up.jpg");
             } else {
-              myImgEl.setAttribute("src", "assets/media/Down.jpg");
+              myImgEl.setAttribute("src", "./assets/images/Down.jpg");
             };
       
             myImgEl.setAttribute("alt", "Buy or Sell Image");
