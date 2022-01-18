@@ -24,25 +24,22 @@
   <section data-name="component-info" class="pa3 pa5-ns bt b--black-10 black-70 bg-white">
     
 </section>
-    <div class="dt dt--fixed">
-   
-      <div class="dt dt--fixed">
-        <div class="dtc tc pv4 white bg-blue">
-          1 2
-          <div id="search" >
-            Search goes here
-            <div class="">
-              <h2>Search:</h2>
-              <input type="test" class="" id="mySearchBx">
-          </div>
-          <button class="" type="button" id="coinSearchBtn" value="Input" >Search Crypto</button>
-          <button class="" type="button" id="nftSearchBtn" value="Input" >Search NFT</button>
+      <div class="flex flex-wrap">
+        <div class="flex flex-column items-start w-50 white bg-blue" id="searchHistoryDiv">
+          <div class="flex-column ma2" id="search" >
+              <label class="ma2" for="mySearchBx">Search:</label><br>
+              <input type="test" class="w-50 ma2" id="mySearchBx"><br>
+
+          <button class="btn btn-block btn-primary ma2" type="button" id="coinSearchBtn" value="Input" >Search Crypto</button><br>
+          <button class="btn btn-block btn-primary ma2" type="button" id="nftSearchBtn" value="Input" >Search NFT</button><br>
         </div>
-        </div>
-        <div class="dtc tc pv4 white bg-black-70">
+        <h2>History: </h2>
+      </div>
+        <div class="flex w-49 white bg-black-70" id="newsFeed">
             <link href="http://api.mediastack.com/v1/news?access_key=" />
+            <h2>News</h2>
         </div>
-        <div class="dtc tc pv4 white bg-black">
+        <div class="flex w-100 cf white bg-black" id="OpenSeaEvents">
           Media Goes Here
         </div>
         <!-- <div class="dtc tc pv4 white bg-black-70">
@@ -64,11 +61,7 @@
           9 2
         </div> -->
       </div>
-      <div class="dt dt--fixed">
-        <div class="dtc tc pv4 bg-black-10" id="searchHistoryDiv">
-          1 lower
-          Search History Goes Here
-        </div>
+
         <div class="dtc tc pv4 bg-black-05" id="searchResults">
           2 lower
           Charts?
@@ -86,15 +79,14 @@
           6 lower
         </div> -->
       </div>
-    </div>
-    
+
     <h1>CryptoNow Coming Soon!</h1>
     <h2>Blockchain Test</h2>
     <div id="apiTest"></div>
     <h2>CoinCap Test</h2>
     <div id="coincapTest"></div>
     <h2>OpenSea Test</h2>
-    <div id="OpenSeaEvents" class="flex flex-wrap"></div>
+    <!-- <div id="OpenSeaEvents" class="flex flex-wrap"></div> -->
     </div>
     <footer id=footer>
         Footer goes here

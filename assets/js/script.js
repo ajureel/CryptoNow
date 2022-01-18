@@ -55,7 +55,7 @@ var addHistoryBtn = function (searchText, searchType, myURL) {
   myConsoleLog("resultObject", myURL);
 
   var historyBtn = document.createElement('button');
-  historyBtn.setAttribute("class", "btn btn-block btn-primary");
+  historyBtn.setAttribute("class", "btn btn-block btn-primary ma2");
   historyBtn.setAttribute("type", "button");
   historyBtn.setAttribute("id", searchText);
   // what do we want to store from the data object?
@@ -161,7 +161,7 @@ var getCoinCapTicker = function () {
 
 var getOpenSeaAssets = function () {
 
-  requestUrl = 'https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20';
+  requestUrl = 'https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=10';
   //requestUrl = 'https://api.opensea.io/api/v1/assets?&order_direction=desc&offset=0&limit=20';
   fetch(requestUrl)
     .then(function (response) {
@@ -183,7 +183,7 @@ var getOpenSeaEvents = function () {
 
   myConsoleLog("options", JSON.stringify(options));
 
-  fetch('https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=20', options)
+  fetch('https://api.opensea.io/api/v1/events?only_opensea=false&offset=0&limit=10', options)
     .then(function (response) {
       return response.json();
     })
