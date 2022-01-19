@@ -14,13 +14,8 @@ toggle.addEventListener("click" , () =>{
 
 searchBtn.addEventListener("click" , () =>{
   sidebar.classList.remove("close");
+  getNFTItem();
 })
-nftBtn.addEventListener("click" , () =>{
-  sidebar.classList.remove("close");
-  alert('nftbtn');
-})
-
-
 
 modeSwitch.addEventListener("click" , () =>{
   body.classList.toggle("dark");
