@@ -49,7 +49,8 @@ var addHistoryBtn = function (searchText, searchType, myURL) {
   myConsoleLog("resultObject", myURL);
 
   var historyBtn = document.createElement('button');
-  historyBtn.setAttribute("class", "f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green");
+  historyBtn.setAttribute("class", "items-center f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib dark-green");
+  // historyBtn.setAttribute("class", "f6 link dim br-pill ba bw2 ph3 pv2 mb2 ml4 dib dark-green");
   historyBtn.setAttribute("type", "button");
   historyBtn.setAttribute("id", searchText);
   // what do we want to store from the data object?
@@ -156,13 +157,14 @@ var getBlockChainItem = function (myBtnText, caller) {
             // SEE: Example http://tachyons.io/components/cards/suggested-profile/index.html
       
             // Create the elements of the card
-            var myArticleEl = document.createElement('article');
+            var myArticleEl = document.createElement('li');
+            // var myArticleEl = document.createElement('article');
             var myImgEl = document.createElement('img');
             var myFieldsDivEl = document.createElement('div');
             var myCurNameEl = document.createElement('a');
             var last_tradeEl = document.createElement('p');
             var price_24hEl = document.createElement('p');
-            var volume_24hEl = document.createElement('p');
+            // var volume_24hEl = document.createElement('p');
       
             // last_trade_price: 43498.23
             // price_24h: 42917.75
@@ -170,16 +172,19 @@ var getBlockChainItem = function (myBtnText, caller) {
             // volume_24h: 186.53045485
       
             // Set the element attributes
-            myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
-            myImgEl.setAttribute('class', 'db');
-            myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
+            myArticleEl.setAttribute('class', 'flex items-center lh-copy pa3 ph0-l bb b--black-10');
+            myImgEl.setAttribute('class', 'w2 h2 w3-ns h3-ns br-100');
+            // myImgEl.setAttribute('class', 'db');
+            myFieldsDivEl.setAttribute('class', 'pl3 flex-auto');
             myCurNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
+            last_tradeEl.setAttribute('class','f6 db black-70')
+            price_24hEl.setAttribute('class','f6 db black-70')
       
             // populate the data from the API results
             myCurNameEl.innerText = "Symbol: " + data.symbol;
             last_tradeEl.innerText = "Last Trade: $" + data.last_trade_price;
             price_24hEl.innerText = "Price: $" + data.price_24h;
-            volume_24hEl.innerText = "Volume: " + data.volume_24h;
+            // volume_24hEl.innerText = "Volume: " + data.volume_24h;
             if (data.last_trade_price > data.price_24h) { //trading is higher than current price so get on the wagon and buy!
               myImgEl.setAttribute("src", "./assets/images/Up.jpg");
             } else {
@@ -189,7 +194,8 @@ var getBlockChainItem = function (myBtnText, caller) {
             myImgEl.setAttribute("alt", "Buy or Sell Image");
       
             //Build the card
-            myFieldsDivEl.append(myCurNameEl, price_24hEl, last_tradeEl, volume_24hEl);
+            myFieldsDivEl.append(myCurNameEl, price_24hEl, last_tradeEl);
+            // myFieldsDivEl.append(myCurNameEl, price_24hEl, last_tradeEl, volume_24hEl);
             myArticleEl.append(myImgEl, myFieldsDivEl);
       
             // currently this only displays one at a time.  It would be cool to put these in an array and build up to displaying multiple. 
