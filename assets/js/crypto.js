@@ -178,9 +178,9 @@ var getBlockChainItem = function (myBtnText, caller) {
             myImgEl.setAttribute('class', 'w2 h2 w3-ns h3-ns br-100');
             // myImgEl.setAttribute('class', 'db');
             myFieldsDivEl.setAttribute('class', 'pl3 flex-auto');
-            myCurNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
-            last_tradeEl.setAttribute('class','f6 db black-70')
-            price_24hEl.setAttribute('class','f6 db black-70')
+            myCurNameEl.setAttribute('class', 'f15 db link light-blue hover-blue');
+            last_tradeEl.setAttribute('class','f10 db white-70')
+            price_24hEl.setAttribute('class','f10 db white-70')
       
             // populate the data from the API results
             myCurNameEl.innerText = "Symbol: " + data.symbol;
