@@ -13,7 +13,7 @@
     <link rel="icon" href="assets/images/CrownClipArt.png" />
   </head>
   <body>
-    <nav class="sidebar close">
+    <nav class="sidebar open">
       <header>
           <div class="image-text">
               <span class="image">
@@ -22,7 +22,7 @@
               </span>
 
               <div class="text logo-text">
-                  <span class="name">CryptoNow</span>
+                  <span class="name">CryptoNow!</span>
               </div>
           </div>
 
@@ -34,14 +34,21 @@
 
               <ul class="menu-links">
                   <li class="nav-link">
-                      <a href="index.html">
+                      <a href="#SearchTitle">
                           <i class='bx bx-home-alt icon' ></i>
-                          <span class="text nav-text">Crypto</span>
+                          <span class="text nav-text">Search & History</span>
                       </a>
                   </li>
+                  
+                  <li class="nav-link">
+                    <a href="#CryptoMovesTitle">
+                        <i class='bx bx-bitcoin icon' ></i>
+                        <span class="text nav-text">Crypto Movers</span>
+                    </a>
+                </li>
 
                   <li class="nav-link">
-                      <a href="nfts.html">
+                      <a href="#NFTTitle">
                           <i class='bx bx-bar-chart-alt-2 icon' ></i>
                           <span class="text nav-text">NFTs</span>
                       </a>
@@ -49,7 +56,7 @@
 
 
                   <li class="nav-link">
-                      <a href="News.html">
+                      <a href="#NewsTitle">
                           <i class='bx bx-pie-chart-alt icon' ></i>
                           <span class="text nav-text">News</span>
                       </a>
@@ -80,25 +87,52 @@
 
   </nav>
 
-<<<<<<< HEAD
-   
-    <section class="home">
-      <div class="text">Home content</div>
-  </section>
-=======
   <section class="home">
->>>>>>> 1465baa68cd9cc5760cc63fdfea4652793bbafdb
-    <div class="text">Crypto
-      <div class="search-box">
-        <i class='bx bx-search icon'></i>
-        <input type="test" class="" id="mySearchBx" placeholder="Search currency symbols like BTC or Doge or ETC or etc...">
-          <button class="" type="button" id="coinSearchBtn" value="Input">Search Crypto</button>
-      </div>
-    </div>
-    <div class="flex flex-wrap w-100 cf white bg-black"
-    id="crypto">
-    <div  id="searchHistoryDiv"></div>  
-    <div  id="searchResults">      </div>
+    <div class="text"> 
+        <h1 id="SearchTitle">Search and History</h1>
+        
+        <div class="dt dt--fixed">
+   
+            <div class="dt dt--fixed">
+              <div class="dtc tc pv4 white bg-blue">
+                  <div id="search" >
+                        <div class="">
+                            <h2>Search:</h2>
+                            Enter a currency symbol: BTC, Doge, etc...
+                            <input type="test" class="" id="mySearchBx">
+                        </div>
+                        <button class="" type="button" id="coinSearchBtn" value="Input" >Search Crypto</button>
+                        <button class="" type="button" id="nftSearchBtn" value="Input" >Search NFT</button>
+                    </div>
+              </div>
+
+              
+            <div class="dt dt--fixed">
+              <div class="dtc tc pv4 bg-black-10" id="searchHistoryDiv">
+                <H3>History</H2>
+              </div>
+              <div class="dtc tc pv4 bg-black-05" id="searchResults">
+                <h3>Search Results</h2>
+              </div>
+            </div>
+
+
+        </div>
+        </div>
+        <div>
+        <div class="dtc tc pv4 white bg-black">
+            Media Goes Here
+          </div>
+          <div class="dtc tc pv4 white bg-black-70">
+            Live Feed Goes Here
+        </div>
+
+        <div></div>
+          <br><h2 id="CryptoMovesTitle">Top 5 Recent Crypto Moves</h2>
+          <div id="apiTest" class="flex flex-wrap"></div>
+          <br><h2 id='NFTTitle'>Moving NFTs</h2>
+          <div id="OpenSeaEvents" class="flex flex-wrap"></div>
+          </div>
       
     </div>
         
@@ -106,6 +140,6 @@
 
   
 <script src="assets/js/nav.js"></script>
-<script src="assets/js/crypto.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

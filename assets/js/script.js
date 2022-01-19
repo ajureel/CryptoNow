@@ -111,53 +111,61 @@ var getBlockChainTicker = function () {
       //Using console.log to examine the data
       console.log(data);
 
-     
+      //display top 5 cryptos
+     for (i=0;i<5;i++){
+ 
+
+      // Create the elements of the card
+      var mySectionEl = document.createElement('section');
+      var myArticleEl = document.createElement('article');
+      var myFieldsDivEl = document.createElement('div');
       var currentSymbolEl = document.createElement('p');
       var currentLastTradePriceEl = document.createElement('p');
       var currentPrice_24hEl = document.createElement('p');
-      var currentVolumeEl = document.createElement('p');
+     var currentVolumeEl = document.createElement('p');
+      var myAddBtnEl = document.createElement('button');
 
+      currentSymbolEl.innerText = "Symbol: " + data[i].symbol;
+      currentLastTradePriceEl.innerText = "Last Price: " + data[i].last_trade_price;
+      currentPrice_24hEl.innerText = "Price 24hrs Ago: " + data[i].price_24h;
+      currentVolumeEl.innerText = "Current Volume: " + data[i].volume_24h;
+
+      // Set the element attributes
+      mySectionEl.setAttribute('class', 'tc pa3 pa5-ns');
+      myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
+      myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
+      currentSymbolEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
+
+      myBlockchainSymbol = data[i].symbol.toUpperCase();
+
+      var myfunction = 'createHistory("' + myBlockchainSymbol + '","getBlockChainItem","")';
       
-      currentSymbolEl.innerText = "Symbol: " + data[0].symbol;
-      currentLastTradePriceEl.innerText = "Last Price: " + data[0].last_trade_price;
-      currentPrice_24hEl.innerText = "Price 24hrs Ago: " + data[0].price_24h;
-      currentVolumeEl.innerText = "Current Volume: " + data[0].volume_24h;
+      myAddBtnEl.setAttribute('onclick', myfunction);
+      myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
+      myAddBtnEl.setAttribute('href', "javascript:void(0);");
+      myAddBtnEl.innerText = "Add to History";
+      
+      
+      //Build the card
+      myFieldsDivEl.append(currentSymbolEl, myAddBtnEl,currentPrice_24hEl, currentLastTradePriceEl, currentVolumeEl);
+      myArticleEl.append( myFieldsDivEl);
+      // mySectionEl.append(myArticleEl);
 
-      apiTestEl.append(currentSymbolEl, currentLastTradePriceEl, currentLastTradePriceEl, currentPrice_24hEl, currentVolumeEl);
+      // Add the card
+      apiTestEl.append(myArticleEl)
 
 
-    });
-}
 
-var getCoinCapTicker = function () {
 
-  requestUrl = 'https://api.coincap.io/v2/assets/bitcoin';
 
-  fetch(requestUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      //Using console.log to examine the data
-      console.log(data);
 
-      var currentHeaderEl = document.createElement('h');
-      var currentSymbolEl = document.createElement('p');
-      var currentLastTradePriceEl = document.createElement('p');
-      var currentPrice_24hEl = document.createElement('p');
-      var currentVolumeEl = document.createElement('p');
 
-      // currentHeaderEl.innerText = "Blockchain API Test";
-      // currentSymbolEl.innerText = "Symbol: " + data[0].symbol;
-      // currentLastTradePriceEl.innerText = "Last Price: " + data[0].last_trade_price;
-      // currentPrice_24hEl.innerText = "Humidity: " + data[0].price_24h;
-      // currentVolumeEl.innerText = "UV Index: " +  data[0].volume_24h;
 
-      // coincapTestEl.append(currentHeaderEl, currentSymbolEl, currentLastTradePriceEl, currentLastTradePriceEl, currentPrice_24hEl, currentVolumeEl);
-
+      }
 
     });
 }
+
 
 var getOpenSeaAssets = function () {
 
