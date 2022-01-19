@@ -1,4 +1,6 @@
 // Elements
+var coinSearchBtnEl = document.getElementById('coinSearchBtn');
+var mySearchBxEl = document.getElementById('mySearchBx');
 var searchResultsEl = document.getElementById('searchResults');
 var searchHistoryDivEl = document.getElementById('searchHistoryDiv');
 
@@ -206,6 +208,13 @@ var getBlockChainItem = function (myBtnText, caller) {
 
 };
 
+
+
+coinSearchBtnEl.addEventListener('click', getBlockChainItem);
 searchHistoryDivEl.addEventListener('click', function (myEvent) {
   reloadHistoryBtn(myEvent);
 });
+
+// searchResultsEl.addEventListener('click', function (myEvent) {
+//     reloadCity(myEvent);
+// });

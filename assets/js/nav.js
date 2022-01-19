@@ -12,11 +12,6 @@ toggle.addEventListener("click" , () =>{
   sidebar.classList.toggle("close");
 })
 
-searchBtn.addEventListener("click" , () =>{
-  sidebar.classList.remove("close");
-  getNFTItem();
-})
-
 modeSwitch.addEventListener("click" , () =>{
   body.classList.toggle("dark");
   
