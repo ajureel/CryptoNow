@@ -215,13 +215,15 @@ var getOpenSeaEvents = function () {
         myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
         myNFTNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
 
-        if (data.asset_events[i].event_type !== 'created'){
-        var myURL = 'https://api.opensea.io/api/v1/asset/'+data.asset_events[i].asset.asset_contract.address +'/'+data.asset_events[i].asset.token_id +'/';
-        var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","'+ myURL + '")';
-        myAddBtnEl.setAttribute('onclick', myfunction);
-        myAddBtnEl.setAttribute('href', "javascript:void(0);");
-        myAddBtnEl.innerText = "Add to History";
-      }else myAddBtnEl = document.createElement('a');
+        // if (data.asset_events[i].event_type !== 'created'){
+        // var myURL = 'https://api.opensea.io/api/v1/asset/'+data.asset_events[i].asset.asset_contract.address +'/'+data.asset_events[i].asset.token_id +'/';
+        // var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","'+ myURL + '")';
+        // myAddBtnEl.setAttribute('onclick', myfunction);
+        // myAddBtnEl.setAttribute('href', "javascript:void(0);");
+        // myAddBtnEl.innerText = "Add to History";
+
+      //}else 
+      myAddBtnEl = document.createElement('a');
         //createHistory(myToken, "getNFTItem", myURL);
         //<a onclick="jsfunction()" href="javascript:void(0);"></a>
 
