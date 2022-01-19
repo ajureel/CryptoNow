@@ -4,15 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
     <!-- http://tachyons.io/components/tables/striped-dark/index.html -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <!--Boxicons CSS-->
     <link rel="stylesheet" href="assets/css/navbar.css" />
     <title>CryptoNow!</title>
@@ -21,97 +15,90 @@
   <body>
     <nav class="sidebar close">
       <header>
-        <div class="image-text">
-          <span class="image">
-            <img src="assets/images/CryptoNowLogo.png" alt="" />
-            <!-- <img src="assets/images/CryptoNowLogo.png" alt=""> -->
-          </span>
+          <div class="image-text">
+              <span class="image">
+                <img src="assets/images/CrownClipArt.png" alt="">
+                <!-- <img src="assets/images/CryptoNowLogo.png" alt=""> -->
+              </span>
 
-          <div class="text logo-text">
-            <span class="name">CryptoNow!</span>
+              <div class="text logo-text">
+                  <span class="name">CryptoNow!</span>
+              </div>
           </div>
-        </div>
 
-        <i class="bx bx-chevron-right toggle"></i>
+          <i class='bx bx-chevron-right toggle'></i>
       </header>
 
       <div class="menu-bar">
-        <div class="menu">
-          <ul class="menu-links">
-            <li class="nav-link">
-              <a href="index.html">
-                <i class="bx bx-home-alt icon"></i>
-                <span class="text nav-text">Dashboard</span>
-              </a>
-            </li>
+          <div class="menu">
 
-            <li class="nav-link">
-              <a href="nfts.html">
-                <i class="bx bx-bar-chart-alt-2 icon"></i>
-                <span class="text nav-text">NFTs</span>
-              </a>
-            </li>
+              <ul class="menu-links">
+                  <li class="nav-link">
+                      <a href="index.html">
+                          <i class='bx bx-home-alt icon' ></i>
+                          <span class="text nav-text">Dashboard</span>
+                      </a>
+                  </li>
 
-            <li class="nav-link">
-              <a href="#">
-                <i class="bx bx-pie-chart-alt icon"></i>
-                <span class="text nav-text">News</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+                  <li class="nav-link">
+                      <a href="nfts.html">
+                          <i class='bx bx-bar-chart-alt-2 icon' ></i>
+                          <span class="text nav-text">NFTs</span>
+                      </a>
+                  </li>
 
-        <!-- Bottom of menu -->
-        <div class="bottom-content">
-          <li class="mode">
-            <div class="sun-moon">
-              <i class="bx bx-moon icon moon"></i>
-              <i class="bx bx-sun icon sun"></i>
-            </div>
-            <span class="mode-text text">Dark mode</span>
 
-            <div class="toggle-switch">
-              <span class="switch"></span>
-            </div>
-          </li>
-        </div>
+                  <li class="nav-link">
+                      <a href="#">
+                          <i class='bx bx-pie-chart-alt icon' ></i>
+                          <span class="text nav-text">News</span>
+                      </a>
+                  </li>
+
+              </ul>
+          </div>
+
+          
+          <!-- Bottom of menu -->
+          <div class="bottom-content">
+            
+
+              <li class="mode">
+                  <div class="sun-moon">
+                      <i class='bx bx-moon icon moon'></i>
+                      <i class='bx bx-sun icon sun'></i>
+                  </div>
+                  <span class="mode-text text">Dark mode</span>
+
+                  <div class="toggle-switch">
+                      <span class="switch"></span>
+                  </div>
+              </li>
+              
+          </div>
       </div>
-    </nav>
 
-    <section class="home">
-      <div class="text">
-        <h2 class="pa3">Crypto Currency Lookup</h2>
-        <div class="search-box">
-          <i class="bx bx-search icon"></i>
-          <input
-            type="test"
-            class="mw-100 w-100 w5-ns f5 input-reset ba b--black-20 pv3 ph4 border-box"
-            id="mySearchBx"
-            placeholder="Search currency symbols like BTC or Doge or ETC or etc..."
-          />
-          <button
-            class="input-reset w-100 w-auto-ns bg-black-80 white f5 pv2 pv3-ns ph4 ba b--black-80 bg-hover-mid-gray"
-            type="button"
-            id="coinSearchBtn"
-            value="Input"
-          >
-            Search Crypto
-          </button>
-        </div>
+  </nav>
+
+  <section class="home">
+    <div class="text">Crypto
+      <div class="search-box">
+        <i class='bx bx-search icon'></i>
+        <input type="test" class="" id="mySearchBx" placeholder="Search currency symbols like BTC or Doge or ETC or etc...">
+          <button class="" type="button" id="coinSearchBtn" value="Input">Search Crypto</button>
       </div>
-      <div class="flex flex-column w-100 cf white" id="crypto">
-        <div
-          class="flex flex-column items-center w-50"
-          id="searchResults"
-        ></div>
-        <div
-          class="flex flex-column items-center w-50"
-          id="searchHistoryDiv"
-        ></div>
-      </div>
+    </div>
+    <div class="flex flex-wrap w-100 cf white bg-black"
+    id="crypto">
+    <div  id="searchHistoryDiv"></div>  
+    <div  id="searchResults">      </div>
+      
+    </div>
+        
     </section>
 
-    <script src="assets/js/nav.js"></script>
-    <script src="assets/js/crypto.js"></script>
-  </body>
+  
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/crypto.js"></script>
+</body>
 </html>
