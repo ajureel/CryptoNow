@@ -24,6 +24,11 @@ var myConsoleLog = function (objName, obj) {
   console.log(objName + ": " + obj);
 }
 
+var myRound = function (myval) {
+  myval = Math.round(myval * 100) / 100;
+  return myval;
+}
+
 // create history and buttons
 var createHistory = function (searchText, searchType, resultObject) {
   console.log("create button and history");
@@ -83,7 +88,7 @@ var reloadHistoryBtn = function (myEvent) {
 
   if (reloadSearchType == 'getBlockChainItem') {
     getBlockChainItem(reloadSearchText, "reloadHistoryBtn");
-  } else if (reloadSearchType == 'getNFTItem'){
+  } else if (reloadSearchType == 'getNFTItem') {
     getNFTItem(reloadSearchText, "getNFTItem", reloadURL);
 
   }
@@ -112,47 +117,47 @@ var getBlockChainTicker = function () {
       console.log(data);
 
       //display top 5 cryptos
-     for (i=0;i<5;i++){
- 
+      for (i = 0; i < 5; i++) {
 
-      // Create the elements of the card
-      var mySectionEl = document.createElement('section');
-      var myArticleEl = document.createElement('article');
-      var myFieldsDivEl = document.createElement('div');
-      var currentSymbolEl = document.createElement('p');
-      var currentLastTradePriceEl = document.createElement('p');
-      var currentPrice_24hEl = document.createElement('p');
-     var currentVolumeEl = document.createElement('p');
-      var myAddBtnEl = document.createElement('button');
 
-      currentSymbolEl.innerText = "Symbol: " + data[i].symbol;
-      currentLastTradePriceEl.innerText = "Last Price: " + data[i].last_trade_price;
-      currentPrice_24hEl.innerText = "Price 24hrs Ago: " + data[i].price_24h;
-      currentVolumeEl.innerText = "Current Volume: " + data[i].volume_24h;
+        // Create the elements of the card
+        var mySectionEl = document.createElement('section');
+        var myArticleEl = document.createElement('article');
+        var myFieldsDivEl = document.createElement('div');
+        var currentSymbolEl = document.createElement('p');
+        var currentLastTradePriceEl = document.createElement('p');
+        var currentPrice_24hEl = document.createElement('p');
+        var currentVolumeEl = document.createElement('p');
+        var myAddBtnEl = document.createElement('button');
 
-      // Set the element attributes
-      mySectionEl.setAttribute('class', 'tc pa3 pa5-ns');
-      myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
-      myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
-      currentSymbolEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
+        currentSymbolEl.innerText = "Symbol: " + data[i].symbol;
+        currentLastTradePriceEl.innerText = "Last Price: " + myRound(data[i].last_trade_price);
+        currentPrice_24hEl.innerText = "Price 24hrs Ago: " + myRound(data[i].price_24h);
+        currentVolumeEl.innerText = "Current Volume: " + myRound(data[i].volume_24h);
 
-      myBlockchainSymbol = data[i].symbol.toUpperCase();
+        // Set the element attributes
+        mySectionEl.setAttribute('class', 'tc pa3 pa5-ns');
+        myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
+        myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
+        currentSymbolEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
 
-      var myfunction = 'createHistory("' + myBlockchainSymbol + '","getBlockChainItem","")';
-      
-      myAddBtnEl.setAttribute('onclick', myfunction);
-      myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
-      myAddBtnEl.setAttribute('href', "javascript:void(0);");
-      myAddBtnEl.innerText = "Add to History";
-      
-      
-      //Build the card
-      myFieldsDivEl.append(currentSymbolEl, myAddBtnEl,currentPrice_24hEl, currentLastTradePriceEl, currentVolumeEl);
-      myArticleEl.append( myFieldsDivEl);
-      // mySectionEl.append(myArticleEl);
+        myBlockchainSymbol = data[i].symbol.toUpperCase();
 
-      // Add the card
-      apiTestEl.append(myArticleEl)
+        var myfunction = 'createHistory("' + myBlockchainSymbol + '","getBlockChainItem","")';
+
+        myAddBtnEl.setAttribute('onclick', myfunction);
+        myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
+        myAddBtnEl.setAttribute('href', "javascript:void(0);");
+        myAddBtnEl.innerText = "Add to History";
+
+
+        //Build the card
+        myFieldsDivEl.append(currentSymbolEl, myAddBtnEl, currentPrice_24hEl, currentLastTradePriceEl, currentVolumeEl);
+        myArticleEl.append(myFieldsDivEl);
+        // mySectionEl.append(myArticleEl);
+
+        // Add the card
+        apiTestEl.append(myArticleEl)
 
 
 
@@ -223,14 +228,14 @@ var getOpenSeaEvents = function () {
         myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
         myNFTNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
 
-        if (data.asset_events[i].event_type !== 'created'){
-        var myURL = 'https://api.opensea.io/api/v1/asset/'+data.asset_events[i].asset.asset_contract.address +'/'+data.asset_events[i].asset.token_id +'/';
-        var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","'+ myURL + '")';
-        myAddBtnEl.setAttribute('onclick', myfunction);
-        myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
-        myAddBtnEl.setAttribute('href', "javascript:void(0);");
-        myAddBtnEl.innerText = "Add to History";
-      }else myAddBtnEl = document.createElement('a');
+        if (data.asset_events[i].event_type !== 'created') {
+          var myURL = 'https://api.opensea.io/api/v1/asset/' + data.asset_events[i].asset.asset_contract.address + '/' + data.asset_events[i].asset.token_id + '/';
+          var myfunction = 'createHistory("' + data.asset_events[i].asset.name + '","getNFTItem","' + myURL + '")';
+          myAddBtnEl.setAttribute('onclick', myfunction);
+          myAddBtnEl.setAttribute('class', 'f6 link dim br-pill ba bw2 ph3 pv2 mb2 dib dark-green');
+          myAddBtnEl.setAttribute('href', "javascript:void(0);");
+          myAddBtnEl.innerText = "Add to History";
+        } else myAddBtnEl = document.createElement('a');
         //createHistory(myToken, "getNFTItem", myURL);
         //<a onclick="jsfunction()" href="javascript:void(0);"></a>
 
@@ -244,11 +249,13 @@ var getOpenSeaEvents = function () {
         currentDescriptionEl.innerText = data.asset_events[i].asset.description;
 
         if (data.asset_events[i].payment_token) {
-          currentUSDPriceEl.innerText = "$" + data.asset_events[i].payment_token.usd_price;
+          //  currentUSDPriceEl.innerText = "$" + data.asset_events[i].payment_token.usd_price;
+          currentUSDPriceEl.innerText = "$" + Math.round(data.asset_events[i].payment_token.usd_price * 100) / 100;
         };
 
         //Build the card
-        myFieldsDivEl.append(myNFTNameEl, myAddBtnEl, currentEventTypeEl, currentDescriptionEl, currentUSDPriceEl);
+        // myFieldsDivEl.append(myNFTNameEl, myAddBtnEl, currentEventTypeEl, currentDescriptionEl, currentUSDPriceEl);
+        myFieldsDivEl.append(myNFTNameEl, myAddBtnEl, currentEventTypeEl, currentUSDPriceEl); //removed description
         myArticleEl.append(myImgEl, myFieldsDivEl);
         // mySectionEl.append(myArticleEl);
 
@@ -281,16 +288,16 @@ var getBlockChainItem = function (myBtnText, caller) {
   requestUrl = 'https://api.blockchain.com/v3/exchange/tickers/' + myBlockchainSymbol;
 
   fetch(requestUrl)
-    .then(function(data) {
+    .then(function (data) {
       if (data.ok) {
         data.json()
-        .then(function(data) {            
-           //Using console.log to examine the data
+          .then(function (data) {
+            //Using console.log to examine the data
             console.log(data);
-      
+
             // create Tachyons profile card for each NFT 
             // SEE: Example http://tachyons.io/components/cards/suggested-profile/index.html
-      
+
             // Create the elements of the card
             var myArticleEl = document.createElement('article');
             var myImgEl = document.createElement('img');
@@ -299,153 +306,158 @@ var getBlockChainItem = function (myBtnText, caller) {
             var last_tradeEl = document.createElement('p');
             var price_24hEl = document.createElement('p');
             var volume_24hEl = document.createElement('p');
-      
+
             // last_trade_price: 43498.23
             // price_24h: 42917.75
             // symbol: "BTC-USD"
             // volume_24h: 186.53045485
-      
+
             // Set the element attributes
-            myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
-            myImgEl.setAttribute('class', 'db');
-            myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
-            myCurNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
-      
+            myArticleEl.setAttribute('class', 'hide-child ba b--black-20 mw5 center');
+            myImgEl.setAttribute('class', 'db mw4 center');
+            myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20 mw4 center');
+            myCurNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue mw4');
+
             // populate the data from the API results
             myCurNameEl.innerText = "Symbol: " + data.symbol;
-            last_tradeEl.innerText = "Last Trade: $" + data.last_trade_price;
-            price_24hEl.innerText = "Price: $" + data.price_24h;
-            volume_24hEl.innerText = "Volume: " + data.volume_24h;
+            last_tradeEl.innerText = "Last Trade: $" + myRound(data.last_trade_price);
+            price_24hEl.innerText = "Price: $" + myRound(data.price_24h);
+            volume_24hEl.innerText = "Volume: " + myRound(data.volume_24h);
             if (data.last_trade_price > data.price_24h) { //trading is higher than current price so get on the wagon and buy!
               myImgEl.setAttribute("src", "./assets/images/Up.jpg");
             } else {
               myImgEl.setAttribute("src", "./assets/images/Down.jpg");
             };
-      
+
             myImgEl.setAttribute("alt", "Buy or Sell Image");
-      
+
             //Build the card
-            myFieldsDivEl.append(myCurNameEl, price_24hEl, last_tradeEl, volume_24hEl);
-            myArticleEl.append(myImgEl, myFieldsDivEl);
-      
+            myFieldsDivEl.append(myImgEl, myCurNameEl, price_24hEl, last_tradeEl, volume_24hEl);
+            //myArticleEl.append(myFieldsDivEl);
+            myArticleEl.append(myImgEl, myCurNameEl, price_24hEl, last_tradeEl, volume_24hEl);
+
             // currently this only displays one at a time.  It would be cool to put these in an array and build up to displaying multiple. 
             // ie future change to display 5, when adding a new one, remove the oldest
             searchResultsEl.innerHTML = "";
             searchResultsEl.append(myArticleEl);
-      
+
             // add to history
             createHistory(myBlockchainSymbol, "getBlockChainItem", "");
-      
+
           });
       } else {
         alert("Currency not found!");
       };
-      });
+    });
 
 };
 
-var getNFTItem = function (myBtnText, caller, urlText='') {
+var getNFTItem = function (myBtnText, caller, urlText = '') {
   myConsoleLog("getNFTItem", "Start");
   myConsoleLog("myBtnText", myBtnText);
   myConsoleLog("caller", caller);
 
   var myURL = '';
- // Search for the NFT
- if (urlText !== ''){
-   myURL=urlText;
- } else{
-  
-  if (caller !== undefined) {
+  var myNFT = '';
+  // Search for the NFT
+  if (urlText !== '') {
+    myURL = urlText;
     myNFT = myBtnText;
   } else {
-    myNFT = mySearchBxEl.value.toUpperCase();
+
+    if (caller !== undefined) {
+      myNFT = myBtnText;
+    } else {
+      myNFT = mySearchBxEl.value.toUpperCase();
+    };
+
+    //test searching by token_id
+    myToken = "459";//tokenID
+    myAddress = '0xb8da418ffc2cb675b8b3d73dca0e3f10811fbbdd';//address
+
+    myConsoleLog("myToken", myToken);
+    var myURL = 'https://api.opensea.io/api/v1/asset/' + myAddress + '/' + myToken + '/';
+
+  }
+
+  var options = {
+    method: 'GET',
+    headers: { Accept: 'application/json', 'X-API-KEY': obfuscateMe }
   };
 
-  //test searching by token_id
-  myToken = "459";//tokenID
-  myAddress = '0xb8da418ffc2cb675b8b3d73dca0e3f10811fbbdd';//address
+  myConsoleLog("options", JSON.stringify(options));
 
-  myConsoleLog("myToken", myToken);
- var myURL = 'https://api.opensea.io/api/v1/asset/'+myAddress+'/'+myToken+'/';
-  
- }
+  myConsoleLog("myURL", myURL);
 
- var options = {
-  method: 'GET',
-  headers: { Accept: 'application/json', 'X-API-KEY': obfuscateMe }
-};
-
-myConsoleLog("options", JSON.stringify(options));
- 
-myConsoleLog("myURL",myURL);
-  
   fetch(myURL, options)
     .then(function (response) {
       return response.json();
     })
-      .then(function (data) {
-        console.log('here');
-        console.log(data);
+    .then(function (data) {
+      console.log('here');
+      console.log(data);
 
-        var iHaveData = false;
-        try {
-          console.log (data.image_preview_url);
-          iHaveData = true;
-          }
-        catch (error) {
-         console.log("preview does not exist.");
-        }
+      var iHaveData = false;
+      try {
+        console.log(data.image_preview_url);
+        iHaveData = true;
+      }
+      catch (error) {
+        console.log("preview does not exist.");
+      }
 
-        if (iHaveData){
+      if (iHaveData) {
 
-          // create Tachyons profile card for each NFT 
-          // SEE: Example http://tachyons.io/components/cards/suggested-profile/index.html
+        // create Tachyons profile card for each NFT 
+        // SEE: Example http://tachyons.io/components/cards/suggested-profile/index.html
 
-          // Create the elements of the card
-          var myArticleEl = document.createElement('article');
-          var myImgEl = document.createElement('img');
-          var myFieldsDivEl = document.createElement('div');
-          var myNFTNameEl = document.createElement('a');
+        // Create the elements of the card
+        var myArticleEl = document.createElement('article');
+        var myImgEl = document.createElement('img');
+        var myFieldsDivEl = document.createElement('div');
+        var myNFTNameEl = document.createElement('a');
 
-          var currentEventTypeEl = document.createElement('p');
-          var currentDescriptionEl = document.createElement('p');
-          var currentUSDPriceEl = document.createElement('p');
+        var currentEventTypeEl = document.createElement('p');
+        var currentDescriptionEl = document.createElement('p');
+        var currentUSDPriceEl = document.createElement('p');
 
-          // Set the element attributes
-          myArticleEl.setAttribute('class', 'w-25 hide-child relative ba b--black-20 mw5 center');
-          myImgEl.setAttribute('class', 'db');
-          myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20');
-          myNFTNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
-          //Do we need to set a class for event type, description, price?
 
-          // populate the data from the API results
-          if (data.name) { myNFTNameEl.innerText = "Name: " + data.name; };
-          myImgEl.setAttribute("src", data.image_preview_url);
-          myImgEl.setAttribute("alt", "NFT Preview");
-          currentDescriptionEl.innerText = data.description;
+        // Set the element attributes
+        myArticleEl.setAttribute('class', 'hide-child ba b--black-20 mw5 center');
+        myImgEl.setAttribute('class', 'db mw4 center');
+        myFieldsDivEl.setAttribute('class', 'pa2 bt b--black-20 mw4 center');
+        myNFTNameEl.setAttribute('class', 'f6 db link dark-blue hover-blue');
+        //Do we need to set a class for event type, description, price?
 
-          // if (data.asset_events[i].payment_token) {
-          //   currentUSDPriceEl.innerText = "$" + data.asset_events[i].payment_token.usd_price;
-          // };
+        // populate the data from the API results
+        if (data.name) { myNFTNameEl.innerText = "Name: " + data.name; };
+        myImgEl.setAttribute("src", data.image_preview_url);
+        myImgEl.setAttribute("alt", "NFT Preview");
+        currentDescriptionEl.innerText = data.description;
 
-          //Build the card
-          myFieldsDivEl.append(myNFTNameEl, currentEventTypeEl, currentDescriptionEl, currentUSDPriceEl);
-          myArticleEl.append(myImgEl, myFieldsDivEl);
-          // mySectionEl.append(myArticleEl);
+        //if (data.asset_events[i].payment_token) {
+        //   currentUSDPriceEl.innerText = "$" + data.asset_events[i].payment_token.usd_price;
+        //currentUSDPriceEl.innerText = "$" + Math.round(data.asset_events[i].payment_token.usd_price * 100) / 100;
+        // };
 
-          // Add the card
-          // currently this only displays one at a time.  It would be cool to put these in an array and build up to displaying multiple. 
-          // ie future change to display 5, when adding a new one, remove the oldest
-          searchResultsEl.innerHTML = "";
-          searchResultsEl.append(myArticleEl);
+        //Build the card
+        myFieldsDivEl.append(myNFTNameEl, currentEventTypeEl, currentUSDPriceEl);
+        myArticleEl.append(myImgEl, myFieldsDivEl);
+        // mySectionEl.append(myArticleEl);
 
-          // add to history
-          createHistory(myToken, "getNFTItem", myURL);
+        // Add the card
+        // currently this only displays one at a time.  It would be cool to put these in an array and build up to displaying multiple. 
+        // ie future change to display 5, when adding a new one, remove the oldest
+        searchResultsEl.innerHTML = "";
+        searchResultsEl.append(myArticleEl);
 
-        }//end for i
-      })
-    
-  };
+        // add to history
+        createHistory(myNFT, "getNFTItem", myURL);
+
+      }//end for i
+    })
+
+};
 
 
 coinSearchBtnEl.addEventListener('click', getBlockChainItem);
