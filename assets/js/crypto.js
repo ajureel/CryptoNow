@@ -39,6 +39,8 @@ var createHistory = function (searchText, searchType, resultObject) {
   searchHistoryAry.push({ historyText: searchText, historyType: searchType, historyResult: resultObject });
 
   //save history to local storage
+  localStorage.setItem('searchHistoryAry', JSON.stringify(searchHistoryAry));
+  console.log(JSON.parse(window.localStorage.getItem('searchHistoryAry')));
   //saveHistory();
 }
 
@@ -50,7 +52,6 @@ var addHistoryBtn = function (searchText, searchType, myURL) {
 
   var historyBtn = document.createElement('button');
   historyBtn.setAttribute("class", "items-center f6 grow no-underline br-pill ba bw2 ph3 pv2 mb2 dib dark-green");
-  // historyBtn.setAttribute("class", "f6 link dim br-pill ba bw2 ph3 pv2 mb2 ml4 dib dark-green");
   historyBtn.setAttribute("type", "button");
   historyBtn.setAttribute("id", searchText);
   // what do we want to store from the data object?
@@ -62,6 +63,7 @@ var addHistoryBtn = function (searchText, searchType, myURL) {
   // myConsoleLog("searchHistoryDivEl",searchHistoryDivEl.outerHTML);
   searchHistoryDivEl.append(historyBtn);
   searchBtnsAry.push(historyBtn);
+
 
 }
 
