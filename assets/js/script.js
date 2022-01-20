@@ -461,7 +461,7 @@ var getNFTItem = function (myBtnText, caller, urlText = '') {
 
 
 coinSearchBtnEl.addEventListener('click', getBlockChainItem);
-nftSearchBtnEl.addEventListener('click', getNFTItem);
+//nftSearchBtnEl.addEventListener('click', getNFTItem);
 searchHistoryDivEl.addEventListener('click', function (myEvent) {
   reloadHistoryBtn(myEvent);
 });
