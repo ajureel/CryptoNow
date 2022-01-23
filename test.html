@@ -9,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <!--Boxicons CSS-->
     <link rel="stylesheet" href="assets/css/navbar.css" />
+    <link rel="stylesheet" href="assets/css/style.css"/>
     <title>CryptoNow!</title>
     <link rel="icon" href="assets/images/CrownClipArt.png" />
   </head>
@@ -56,11 +57,18 @@
 
 
                   <li class="nav-link">
-                      <a href="#CryptoNews">
-                          <i class='bx bx-pie-chart-alt icon' ></i>
-                          <span class="text nav-text">News</span>
-                      </a>
-                  </li>
+                    <a href="#CryptoNews">
+                        <i class='bx bx-pie-chart-alt icon' ></i>
+                        <span class="text nav-text">News</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="index.html">
+                        <i class='bx bx-bolt-circle icon'></i>
+                        <span class="text nav-text">Classic CryptoNow</span>
+                    </a>
+                </li>
 
               </ul>
           </div>
@@ -88,6 +96,15 @@
   </nav>
 
   <section class="home">
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+    
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close"><div id="x">&times;</div></span>
+            <p id="errorTextP">Place Holder Text</p>
+        </div>
+    </div>
     <div class="text"> 
         <h1 id="SearchTitle">Search and History</h1>
         

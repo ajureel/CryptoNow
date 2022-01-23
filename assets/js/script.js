@@ -7,6 +7,9 @@ var nftSearchBtnEl = document.getElementById('nftSearchBtn');
 var mySearchBxEl = document.getElementById('mySearchBx');
 var searchResultsEl = document.getElementById('searchResults');
 var searchHistoryDivEl = document.getElementById('searchHistoryDiv');
+var myModalEl = document.getElementById("myModal");
+var myErrorTextEl = document.getElementById("errorTextP");
+var ModalCloseEl = document.getElementById("x");
 
 // Global Vars
 var obfuscateMe = "b6581e5631f74d709c61e26b094e5e0a";
@@ -29,6 +32,45 @@ var myRound = function (myval) {
   return myval;
 }
 
+// When the user clicks on <span> (x), close the modal
+//ModalCloseEl.addEventListener("click", function (){myModalEl.style.display = "none";});
+
+ModalCloseEl.addEventListener('click', function (myEvent) {
+  myModalEl.style.display = "none";
+});
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == myModalEl) {
+    myModalEl.style.display = "none";
+  }
+}
+
+//Load History from local storage
+var loadHistory = function() {
+  searchHistoryAry = JSON.parse(localStorage.getItem("searchHistoryAry"));
+  
+    // if nothing in localStorage, return
+    if (!searchHistoryAry) {
+      searchHistoryAry = [];
+        return;
+    }
+    
+    // loop over object properties and add buttons
+    for (i=0; i<searchHistoryAry.length; i++){
+        // console.log(weatherHistory[i].city, weatherHistory[i].lat, weatherHistory[i].lon);
+        //addCityBtn(searchHistoryAry[i].city, searchHistoryAry[i].lat, searchHistoryAry[i].lon);
+        addHistoryBtn(searchHistoryAry[i].historyText,  searchHistoryAry[i].historyType, searchHistoryAry[i].historyResult);
+    };
+};
+
+// save history to local storage
+var saveHistory = function() {
+    console.log("saving");
+    localStorage.setItem("searchHistoryAry", JSON.stringify(searchHistoryAry));
+};
+
 // create history and buttons
 var createHistory = function (searchText, searchType, resultObject) {
   console.log("create button and history");
@@ -50,7 +92,7 @@ var createHistory = function (searchText, searchType, resultObject) {
   searchHistoryAry.push({ historyText: searchText, historyType: searchType, historyResult: resultObject });
 
   //save history to local storage
-  //saveHistory();
+  saveHistory();
 }
 
 var addHistoryBtn = function (searchText, searchType, myURL) {
@@ -346,9 +388,18 @@ var getBlockChainItem = function (myBtnText, caller) {
 
           });
       } else {
-        alert("Currency not found!");
+        errorModal("Currency Not Found!");
+        mySearchBxEl.value = '';
+        //
       };
     });
+
+};
+
+
+var errorModal = function(myerror){
+  myErrorTextEl.innerText = myerror;
+  myModalEl.style.display = "block";
 
 };
 
@@ -473,6 +524,7 @@ searchHistoryDivEl.addEventListener('click', function (myEvent) {
 // TESTS - These need to be commented out once we finalize the UI and data placement
 getOpenSeaEvents();
 getBlockChainTicker();
+loadHistory();
   // getCoinCapTicker();
  // getOpenSeaAssets();
 

@@ -1,105 +1,130 @@
+<!-- Crypto Now Landing Page and Crypto Search -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css"/>
+    <!-- We use tachyons for some general styling and cards -->
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
-    <!-- http://tachyons.io/components/tables/striped-dark/index.html -->
+    <!-- Boxicons for icons in the menu -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <!--Boxicons CSS-->
     <link rel="stylesheet" href="assets/css/navbar.css" />
+
     <title>CryptoNow!</title>
     <link rel="icon" href="assets/images/CrownClipArt.png" />
-  </head>
-  <body>
+</head>
+
+<body>
+    <!-- We use the sidebar for our navigation menu; this can toggle to expand and retract -->
     <nav class="sidebar open">
-      <header>
-          <div class="image-text">
-              <span class="image">
-                <img src="assets/images/CrownClipArt.png" alt="">
-                <!-- <img src="assets/images/CryptoNowLogo.png" alt=""> -->
-              </span>
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="assets/images/CrownClipArt.png" alt="site logo">
+                </span>
 
-              <div class="text logo-text">
-                  <span class="name">CryptoNow</span>
-              </div>
-          </div>
+                <div class="text logo-text">
+                    <span class="name">CryptoNow</span>
+                </div>
+            </div>
 
-          <i class='bx bx-chevron-right toggle'></i>
-      </header>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
 
-      <div class="menu-bar">
-          <div class="menu">
+        <div class="menu-bar">
+            <div class="menu">
 
-              <ul class="menu-links">
-                  <li class="nav-link">
-                      <a href="index.html">
-                          <i class='bx bx-home-alt icon' ></i>
-                          <span class="text nav-text">Crypto</span>
-                      </a>
-                  </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="index.html">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Crypto</span>
+                        </a>
+                    </li>
 
-                  <li class="nav-link">
-                      <a href="nfts.html">
-                          <i class='bx bx-bar-chart-alt-2 icon' ></i>
-                          <span class="text nav-text">NFTs</span>
-                      </a>
-                  </li>
+                    <li class="nav-link">
+                        <a href="nfts.html">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">NFTs</span>
+                        </a>
+                    </li>
 
 
-                  <li class="nav-link">
-                      <a href="News.html">
-                          <i class='bx bx-pie-chart-alt icon' ></i>
-                          <span class="text nav-text">News</span>
-                      </a>
-                  </li>
+                    <li class="nav-link">
+                        <a href="News.html">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">News</span>
+                        </a>
+                    </li>
 
-              </ul>
-          </div>
+                    <li class="nav-link">
+                        <a href="test.html">
+                            <i class='bx bx-bolt-circle icon'></i>
+                            <span class="text nav-text">Beta One-Page</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-          
-          <!-- Bottom of menu -->
-          <div class="bottom-content">
-            
 
-              <li class="mode">
-                  <div class="sun-moon">
-                      <i class='bx bx-moon icon moon'></i>
-                      <i class='bx bx-sun icon sun'></i>
-                  </div>
-                  <span class="mode-text text">Dark mode</span>
+            <!-- Bottom of menu -->
+            <div class="bottom-content">
 
-                  <div class="toggle-switch">
-                      <span class="switch"></span>
-                  </div>
-              </li>
-              
-          </div>
-      </div>
 
-  </nav>
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
 
-   
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- MAIN PAGE CONTENT -->
     <section class="home">
-     <div class="text">Crypto
-      <div class="search-box">
-        <i class='bx bx-search icon'></i>
-        <input type="test" class="" id="mySearchBx" placeholder="Search currency symbols like BTC or Doge or ETC or etc...">
-          <button class="" type="button" id="coinSearchBtn" value="Input">Search Crypto</button>
-      </div>
-    </div>
-    <div class="flex flex-wrap w-100 cf white bg-black"
-    id="crypto">
-    <div  id="searchHistoryDiv"></div>  
-    <div  id="searchResults">      </div>
-      
-    </div>
-        
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+    
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close"><div id="x">&times;</div></span>
+                <p id="errorTextP">Place Holder Text</p>
+            </div>
+        </div>
+        <div class="text">Crypto
+            <div class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="test" class="" id="mySearchBx"
+                    placeholder="Search currency symbols like BTC or Doge or ETC or etc...">
+                <button class="" type="button" id="coinSearchBtn" value="Input">Search Crypto</button>
+            </div>
+        </div>
+        <div class="flex flex-wrap w-100 cf white bg-black" id="crypto">
+            <div id="searchHistoryDiv">
+                <!-- Search History Loads Here -->
+                <!-- Clicking a search history button will load the item into the search results -->
+            </div>
+            <div id="searchResults"> 
+                <!-- Search Results Loads Here -->
+            </div>
+
+        </div>
+
     </section>
 
-  
-<script src="assets/js/nav.js"></script>
-<script src="assets/js/crypto.js"></script>
+    <script src="assets/js/nav.js"></script>
+    <script src="assets/js/crypto.js"></script>
 </body>
+
 </html>
