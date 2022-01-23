@@ -7,7 +7,7 @@ var getNews = function (myKeyword) {
     MediaStackURL = MediaStackURL + obfuscateMyStack + "&countries=us&sources=cnn,bloomberg&keywords=crypto&languages=en&limit=10" + myKeyword;
     console.log(MediaStackURL);
   
-    fetch(MediaStackURL)
+	fetch(MediaStackURL)
       .then(function(data) {
         if (data.ok) {
           data.json()
@@ -63,7 +63,10 @@ var getNews = function (myKeyword) {
 			  }//end for loop
             });
         } else {
-          alert("Error!");
+          //alert("Error!");
+		  var errorEl = document.createElement('p');
+		  errorEl.innerText = "Error: News Failed to Load!"
+		  EverythingCryptoE1.append();
         };
         });
   

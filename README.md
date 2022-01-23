@@ -9,7 +9,6 @@ A web app for crypto investors to understand what is hot in the market and track
 - MediaStack API
 - Boxicon.com
 - OpenSea API
-- CoinCap API
 
 ## Screenshots
 
